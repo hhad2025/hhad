@@ -5,7 +5,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>  HHAD - Particles</title>
+    <title>  HHAD </title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -26,8 +26,8 @@
 
     <!-- favicons
     ================================================== -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="favicon.ic" type="image/x-icon">
+    <link rel="icon" href="favicon.ic" type="image/x-icon"> -->
 
 </head>
 
@@ -72,31 +72,45 @@
 
                 <div class="col-four home-content__counter">
                     <h3>Launching In</h3>
-
-                    <div class="home-content__clock">
-                        <div class="top">
-                            <div class="time days">
-                                325
-                                <span>Days</span>
-                            </div>
-                        </div>    
-                        <div class="time hours">
-                            09
-                            <span>H</span>
-                        </div>
-                        <div class="time minutes">
-                            54
-                            <span>M</span>
-                        </div>
-                        <div class="time seconds">
-                            30
-                            <span>S</span>
-                        </div>
-                    </div>  <!-- end home-content__clock -->
-                </div>  <!-- end home-content__counter -->
-
-            </div>  <!-- end home-content__main -->
-
+                    <div class="home-content__clock" id="countdown">
+                        <!-- الوقت هيظهر هنا -->
+                    </div>
+                </div>
+                
+                <script>
+                (function() {
+                    // المدة بالميلي ثانية: 60 يوم + 12 ساعة + 15 دقيقة + 40 ثانية
+                    var countdownDuration = ((60 * 24 + 12) * 60 * 60 + 15 * 60 + 40) * 1000;
+                    var endTime = new Date().getTime() + countdownDuration;
+                
+                    function updateCountdown() {
+                        var now = new Date().getTime();
+                        var distance = endTime - now;
+                
+                        if (distance < 0) distance = 0; // لو خلص الوقت
+                
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                        var str = '<div class="top"><div class="time days">' +
+                                  days + ' <span>day' + (days > 1 ? 's' : '') + '</span></div></div>' +
+                                  '<div class="time hours">' + (hours < 10 ? '0' : '') + hours + ' <span>H</span></div>' +
+                                  '<div class="time minutes">' + (minutes < 10 ? '0' : '') + minutes + ' <span>M</span></div>' +
+                                  '<div class="time seconds">' + (seconds < 10 ? '0' : '') + seconds + ' <span>S</span></div>';
+                
+                        document.getElementById('countdown').innerHTML = str;
+                
+                        if (distance > 0) {
+                            setTimeout(updateCountdown, 1000);
+                        }
+                    }
+                
+                    updateCountdown();
+                })();
+                </script>
+                
             <ul class="home-social">
                 <li>
                 <a href="https://www.facebook.com/HossamHandalishyAdvertising/"><i class="fab fa-facebook-f" aria-hidden="true"></i><span>Facebook</span></a>
