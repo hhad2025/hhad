@@ -1244,8 +1244,8 @@ input::-moz-focus-inner {
 }
 
 .home-logo img {
-     width: 168px;
-    height: 67px;
+     width: 180px;
+    height: auto;
 }
 
 
